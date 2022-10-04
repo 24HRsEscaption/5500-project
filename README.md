@@ -1,31 +1,3 @@
-
-Week 0
-Project blog
-[Kevin] Create a Github repo with all of us as collaborators:
-Add Github Id here: kevintab95, karishmavadsaria, 24hrsescaption, ryangawei
-Add all of this as a Github page
-Create a Github page that has the following:
-[Karishma] Outline / Introduction of the project (see Aiden’s proposal)
-User stories (from Canvas discussion)
-[Wenxin] Logistic details like: When we meet? (3 PM Wed), Meeting minutes. That we will use Github for tracking issues.
-[Guoao] Rough timeline for the project
-Once we have an initial blog, contact Aiden to setup a meeting.
-
-—------------------------
-
-Frontend framework: ReactJS 
-
-
-Class schedules:
-
-Kevin: Mon 2-4, Tue 2-4, Thu 5-7
-Guoao: Mon 5-7 PM, Tue 2-4 PM, Wed 10-11 AM
-Karishma: Mon 5 pm-7 pm, Tue 2 pm-4 pm, Thurs 3 pm - 5 pm, Fri 3 pm- 4 pm
-Wenxin: Tue 7-9pm, Tue 2-4pm, Thu 7-8pm 
-
-
-
-
 ### Project outline
 
 #### NRC Text-to-Speech project outline
@@ -56,5 +28,20 @@ Week 6 - 7 (11.9 - 11.22): testing, code review
 Week 8 - 9 (11.23 - 12.6): documentation, project delivery
 
 Week 10 (12.7 - 12.13): final presentation
+
+
+### Minutes
+
+#### Week 0
+- [Kevin] Create a Github repo with all of us as collaborators:
+  - Add Github Id here: kevintab95, karishmavadsaria, 24hrsescaption, ryangawei
+  - Add all of this as a Github page
+  - Create a Github page that has the following:
+- [Karishma] Outline / Introduction of the project (see Aiden’s proposal)
+  - User stories (from Canvas discussion)
+- [Wenxin] Logistic details like: When we meet? (3 PM Wed), Meeting minutes. That we will use Github for tracking issues.
+- [Guoao] Rough timeline for the project
+  - Once we have an initial blog, contact Aiden to setup a meeting.
+- Frontend framework: ReactJS 
 
 

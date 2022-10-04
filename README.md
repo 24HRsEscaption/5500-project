@@ -1,6 +1,6 @@
-### Project outline
+### Project outline RM
 
-#### NRC Text-to-Speech project outline RM
+#### NRC Text-to-Speech project outline 
 
 Canada is home to about 70 Indigenous languages from 10 different language groups. Fewer than 500 fluent speakers of the majority of these languages remain today, with most of them being old, as a result of the residential school system and other practices of cultural suppression.
 

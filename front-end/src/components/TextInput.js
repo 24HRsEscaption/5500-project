@@ -1,4 +1,6 @@
-import Button from "./Button";
+import React from "react";
+
+import {useState} from "react"
 
 function TextInput() {
 
@@ -7,8 +9,8 @@ const textBoxStyles = {
   width:"200px",
   height:"20px",
   padding:"1px"
-  
 };
+const [val, setVal] = useState();
 
   return (
     <div>
@@ -16,14 +18,15 @@ const textBoxStyles = {
         {/* <strong>UserInput&nbsp;&nbsp;</strong> */}
         <input
           type="text"
-          name="text"
+          value={val}
           style={textBoxStyles}
           placeholder="Type in a phrase"
         />
       </label>
-  
+
       {/* <Button color="skyblue" onClick="generate" text="Generate" /> */}
-      <Button color="lightgrey" onClick="delete" text="Delete" />
+      <button name="generate">Generate</button>
+      <button onClick={() => setVal(() => "")}>Reset Text</button>
     </div>
   );
 }

@@ -6,15 +6,13 @@ const Audio = ({audioName,onClick}) => {
 
 	return (
     <div>
-      <h3> {audioName} </h3>
+      {/* <h3> {audioName} </h3> */}
       <audio
-        src="https://www.google.com/logos/fnbx/animal_sounds/horse.mp3"
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         preload="metadata"
         controls
         style={{ background: "white" }}
       ></audio>
-
-
     </div>
   );
 }

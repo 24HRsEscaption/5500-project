@@ -2,22 +2,28 @@ import Button from "./Button";
 
 function TextInput() {
 
-
-  const onClick = ()=>{
-      console.log("clicked button -> Generate");}
-
+const textBoxStyles = {
+  border: '1px solid black',
+  width:"200px",
+  height:"20px",
+  padding:"1px"
+  
+};
 
   return (
     <div>
       <label>
-        <strong>Utterance&nbsp;&nbsp;</strong>
-        <input type="text" name="text" placeholder="Type in a phrase" />
+        {/* <strong>UserInput&nbsp;&nbsp;</strong> */}
+        <input
+          type="text"
+          name="text"
+          style={textBoxStyles}
+          placeholder="Type in a phrase"
+        />
       </label>
-      <Button
-        style={{ background: "skyblue" }}
-        onClick={onClick}
-        text="Generate"
-      />
+  
+      {/* <Button color="skyblue" onClick="generate" text="Generate" /> */}
+      <Button color="lightgrey" onClick="delete" text="Delete" />
     </div>
   );
 }

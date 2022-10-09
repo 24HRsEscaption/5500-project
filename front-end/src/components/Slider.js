@@ -1,13 +1,14 @@
 import { Range } from "react-range";
 import * as React from "react";
-class Pace extends React.Component {
+class Slider extends React.Component {
   state = { values: [1] };
   render() {
     return (
       <div>
         <label>
           <div style={{ display: "inline-block" }}>
-            <strong>Pace&nbsp;&nbsp;</strong>
+        
+            <strong>{this.props.name}&nbsp;&nbsp; </strong>
           </div>
           <Range
             step={0.1}
@@ -49,4 +50,4 @@ class Pace extends React.Component {
   }
 }
 
-export default Pace
+export default Slider

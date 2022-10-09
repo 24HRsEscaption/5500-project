@@ -5,14 +5,7 @@ import TextInput from "./components/TextInput"
 import Tools from './components/Tools';
 import Audio from './components/Audio';
 import Autoplay from './components/Autoplay';
-import Pace from './components/Pace';
-// function App() {
-//   return (
-//     <div className='userInput'>
-//       <TextInput />
-//     </div>
-//   );
-// }
+import Slider from './components/Slider';
 
 
 class App extends React.Component{
@@ -21,16 +14,17 @@ class App extends React.Component{
       <div>
         <br></br>
         <TextInput />
-        <hr></hr>
-        
-        <Audio audioName="Tacotron 2"></Audio>
-        <hr></hr>
-        <Audio audioName="FastPitch"></Audio>
+        <br></br>
 
-        <Autoplay />
-        <Tools />
-        <Pace />
+        <Audio audioName="Audio"></Audio>
+     
 
+     
+        <Slider name="Speed" />
+
+        <Slider name="Pitch" />
+
+        <Slider name="Energy" />
       </div>
     );
 

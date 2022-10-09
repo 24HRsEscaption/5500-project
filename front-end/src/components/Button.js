@@ -1,12 +1,9 @@
 import React from 'react';
 
-const Button = ({text,onClick}) => {
-    // const onClick = ()=>{
-    //     console.log("clicked button -> " + {text}.text);
-     
-    // }
+const Button = ({text,onClick,color}) => {
+
     return (
-      <button onClick={onClick} style={{ background: "skyblue" }}>
+      <button onClick={onClick} style={{ backgroundColor: color }}>
         {text}
       </button>
     );

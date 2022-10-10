@@ -138,7 +138,7 @@ TODO:
 - **[Guoao, Karishma]** Set up the TTS project ([https://github.com/roedoejet/NEU-tts-2022#neu-quickstart-instructions](https://github.com/roedoejet/NEU-tts-2022#neu-quickstart-instructions)) locally and try it out. See what data is returned by the script and how to pass it to the web frontend in a meaningful way.
 - **[Karishma]** Create wireframes / mocks for the UI
 - **[Wenxin]** Set up a basic react project that will take in user input (e.g. text input, sliders for duration and pitch) and make calls to an endpoint.
-- Write Jest tests for frontend code
+- **[Kevin]** Write Jest tests for frontend code
 - **[Kevin]** Set up a basic backend (REST API endpoint(s) with Flask)
 - Integrate the backend and the frontend
 - Dig into synthesizer.py so we figure out how to do that extra thing that Aiden suggested (i.e. manipulating the pitch for certain syllables)

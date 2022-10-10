@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// @ts-ignore
 const Audio = ({audioName,onClick}) => {
 
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -12,7 +13,11 @@ const Audio = ({audioName,onClick}) => {
         preload="metadata"
         controls
         style={{ background: "white" }}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        data-testid="audio"
       ></audio>
+      <span data-testid="status-text">Status: {isPlaying ? 'On' : 'Off'}</span>
     </div>
   );
 }

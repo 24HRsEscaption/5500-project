@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 
 
+// @ts-ignore
 const btn= ({text,onClick,color}) => {
 
 

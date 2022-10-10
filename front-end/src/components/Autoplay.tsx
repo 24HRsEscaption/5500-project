@@ -3,10 +3,10 @@ import React from 'react'
 function Autoplay() {
   return (
     <div>
-      <label class="switch">
+      <label className="switch">
         <strong>Autoplay&nbsp;&nbsp; </strong>
         <input type="checkbox" />
-        <span class="slider round"></span>
+        <span className="slider round"></span>
         
       </label>
     </div>

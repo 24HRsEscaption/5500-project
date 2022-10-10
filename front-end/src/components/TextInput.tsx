@@ -10,23 +10,22 @@ const textBoxStyles = {
   height:"20px",
   padding:"1px"
 };
-const [val, setVal] = useState();
+const [val, setVal] = useState('');
 
   return (
     <div>
       <label>
-        {/* <strong>UserInput&nbsp;&nbsp;</strong> */}
         <input
           type="text"
           value={val}
           style={textBoxStyles}
           placeholder="Type in a phrase"
+          onChange={(e) => setVal(e.target.value)}
         />
       </label>
 
-      {/* <Button color="skyblue" onClick="generate" text="Generate" /> */}
       <button name="generate">Generate</button>
-      <button onClick={() => setVal(() => "")}>Reset Text</button>
+      <button onClick={() => setVal('')}>Reset Text</button>
     </div>
   );
 }

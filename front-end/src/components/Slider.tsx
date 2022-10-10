@@ -1,7 +1,12 @@
 import { Range } from "react-range";
 import * as React from "react";
-class Slider extends React.Component {
-  state = { values: [1] };
+class Slider extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = { values: [1] };
+  }
+
   render() {
     return (
       <div>
@@ -43,7 +48,7 @@ class Slider extends React.Component {
               />
             )}
           />
-          &nbsp;&nbsp;{this.state.values}&nbsp;x
+          &nbsp;&nbsp;<span className="value">{this.state.values}x</span>
         </label>
       </div>
     );

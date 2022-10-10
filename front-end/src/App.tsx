@@ -16,7 +16,7 @@ class App extends React.Component{
         <TextInput />
         <br></br>
 
-        <Audio audioName="Audio"></Audio>
+        <Audio audioName="Audio" onClick={() => {}}></Audio>
      
 
      

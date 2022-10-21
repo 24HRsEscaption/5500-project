@@ -1,0 +1,21 @@
+
+/* ingnore */
+.btnGenerate{
+  width: 100px;
+  height: 70px;
+  display: inline;
+  font-size: 20px;
+  margin-left:  100px ;
+  vertical-align: middle ;
+  background-color: pink
+};
+
+.btnReset{
+  width: 100px;
+  height: 70px;
+  display: inline;
+  font-size: 20px;
+  margin-left:  100px ;
+  vertical-align: middle ;
+  background-color: aqua
+};

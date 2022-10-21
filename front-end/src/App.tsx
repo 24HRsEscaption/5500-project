@@ -15,15 +15,14 @@ class App extends React.Component{
         <br></br>
         <TextInput />
         <br></br>
-
+        <br></br>
         <Audio audioName="Audio" onClick={() => {}}></Audio>
-     
-
-     
+        <br></br>
+        <br></br>
         <Slider name="Speed" />
-
+        <br></br>
         <Slider name="Pitch" />
-
+        <br></br>
         <Slider name="Energy" />
       </div>
     );

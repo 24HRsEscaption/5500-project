@@ -1,15 +1,33 @@
 import React from "react";
-
 import {useState} from "react"
 
-function TextInput() {
 
+function TextInput() {
 const textBoxStyles = {
-  border: '1px solid black',
-  width:"200px",
-  height:"20px",
-  padding:"1px"
+  border: "1px solid black",
+  width: "800px",
+  fontSize: "34px",
+  height: "50px",
+  padding: "30px",
+  marginTop: "20px",
+  marginLeft: "100px",
+  fontFamily: "Arial",
 };
+
+const btnStyle1 = {
+  width: "100px",
+  height: "50px",
+  display: "inline",
+  fontSize: "20px",
+  marginLeft: "60px",
+  verticalAlign:"middle",
+};
+const btnStyle2 = {
+  marginLeft: "700px",
+  backgroundColor: "lightblue",
+};
+
+
 const [val, setVal] = useState('');
 
   return (
@@ -24,8 +42,13 @@ const [val, setVal] = useState('');
         />
       </label>
 
-      <button name="generate">Generate</button>
-      <button onClick={() => setVal('')}>Reset Text</button>
+      <p></p>
+      <button name="generate" style={{...btnStyle1,...btnStyle2}}>
+        Generate
+      </button>
+      <button name="reset" style={btnStyle1} onClick={() => setVal("")}>
+        Reset
+      </button>
     </div>
   );
 }

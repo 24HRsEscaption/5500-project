@@ -31,10 +31,7 @@ class Slider extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);
-
-    this.state = { values: [1] };
   }
-
 
 
   render() {
@@ -48,8 +45,8 @@ class Slider extends React.Component<any, any> {
             step={0.1}
             min={0.1}
             max={2}
-            values={this.state.values}
-            onChange={(values) => this.setState({ values })}
+            values={this.props.val}
+            onChange={this.props.onChange}
             renderTrack={({ props, children }) => (
               <div {...props} style={trackStyles}>
                 {children}
@@ -64,7 +61,7 @@ class Slider extends React.Component<any, any> {
           />
        
           <span className="value" style={dataStyles}>
-            {this.state.values}x
+            {this.props.val}x
           </span>
         </label>
       </div>

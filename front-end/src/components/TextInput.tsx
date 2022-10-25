@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from "react"
 
 
-function TextInput() {
+function TextInput(props: any) {
 const textBoxStyles = {
   border: "1px solid black",
   width: "800px",
@@ -30,6 +30,11 @@ const btnStyle2 = {
 
 const [val, setVal] = useState('');
 
+  const onReset = () => {
+    setVal('');
+    props.handleReset();
+  }
+
   return (
     <div>
       <label>
@@ -46,7 +51,7 @@ const [val, setVal] = useState('');
       <button name="generate" style={{...btnStyle1,...btnStyle2}}>
         Generate
       </button>
-      <button name="reset" style={btnStyle1} onClick={() => setVal("")}>
+      <button name="reset" style={btnStyle1} onClick={onReset}>
         Reset
       </button>
     </div>

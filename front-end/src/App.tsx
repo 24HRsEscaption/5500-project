@@ -29,7 +29,7 @@ class App extends React.Component<any, any>{
     return (
       <div>
         <br></br>
-        <TextInput handleReset={this.onReset.bind(this)} />
+        <TextInput handleReset={this.onReset.bind(this)}  />
         <br></br>
         <br></br>
         <Audio audioName="Audio" onClick={() => {}}></Audio>

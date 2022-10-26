@@ -4,7 +4,7 @@ import * as React from "react";
 const trackStyles = {
   display: "inline-block",
   height: "6px",
-  width: "80%",
+  width: "400px",
   marginLeft: "100px",
   verticalAlign: "middle",
   backgroundColor: "#ccc",

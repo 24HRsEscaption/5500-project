@@ -1,5 +1,50 @@
 # Project outline
 
+## FastSpeech2 setup
+
+1. Install Anaconda (<https://www.anaconda.com/products/distribution#Downloads>)
+2. Create a virtual environment and then activate it. Name (`-n`) can be whatever.
+
+   ```bash
+   conda create -n fastspeech python=3.7.4
+   conda activate fastspeech
+   ```
+
+3. Pull the latest remote and update submodule
+   
+   ```bash
+   git pull origin
+   git submodule update --init
+   ```
+
+4. Enter the FastSpeech2 folder and install required packages
+   
+   ```bash
+   cd NEU-tts-2022
+   pip install -r requirements.txt
+   ```
+
+   Install PyTorch
+   
+   ```bash
+   # Intel MacBook
+   pip3 install torch torchvision torchaudio
+
+   # M1 MacBook
+   pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+   ```
+
+5. Download model file and create output folders
+    Follow <https://github.com/roedoejet/NEU-tts-2022#neu-quickstart-instructions>.
+
+6. Synthesize
+
+   ```bash
+   python3 synthesize.py --text "YOUR_DESIRED_TEXT" --restore_step 900000 --mode single -p config/LJSpeech/preprocess.yaml -m config/LJSpeech/model.yaml -t config/LJSpeech/train.yaml --duration_control 0.8 --energy_control 0.8
+   ```
+
+   The reusult will be under `output\result\LJSpeech`.
+
 ## NRC Text-to-Speech project outline
 
 Canada is home to about 70 Indigenous languages from 10 different language groups. Fewer than 500 fluent speakers of the majority of these languages remain today, with most of them being old, as a result of the residential school system and other practices of cultural suppression.

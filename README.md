@@ -43,7 +43,7 @@
    python3 synthesize.py --text "YOUR_DESIRED_TEXT" --restore_step 900000 --mode single -p config/LJSpeech/preprocess.yaml -m config/LJSpeech/model.yaml -t config/LJSpeech/train.yaml --duration_control 0.8 --energy_control 0.8
    ```
 
-   The reusult will be under `output\result\LJSpeech`.
+   The result will be under `output\result\LJSpeech`.
 
 ## NRC Text-to-Speech project outline
 

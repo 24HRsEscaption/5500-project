@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React, { useState, useEffect, useRef } from 'react';
 
 // @ts-ignore
-const Audio = ({audioName,onClick}) => {
+const Audio = ({audioName,onClick, src}) => {
 
   const audioStyles = {
     marginLeft: "100px",
@@ -26,7 +26,7 @@ const Audio = ({audioName,onClick}) => {
       {/* <h3> {audioName} </h3> */}
       <audio
         style={audioStyles}
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        src={src || 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'}
         preload="metadata"
         controls
         onPlay={() => setIsPlaying(true)}

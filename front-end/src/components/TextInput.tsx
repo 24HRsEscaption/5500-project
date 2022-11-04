@@ -49,7 +49,7 @@ const [val, setVal] = useState('');
       </label>
 
       <p></p>
-      <button name="generate" style={{...btnStyle1,...btnStyle2}}>
+      <button name="generate" style={{...btnStyle1,...btnStyle2}} onClick={() => props.onGenerate(val)}>
         Generate
       </button>
       <button name="reset" style={btnStyle1} onClick={onReset}>

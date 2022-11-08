@@ -1,8 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import HelpIcon from "@mui/icons-material/Help";
-// plz install mui by :
-// npm install @mui/material @emotion/react @emotion/styled
+
 
 
 export default function Helpbtn() {

@@ -1,5 +1,6 @@
 import React from "react";
 import {useState} from "react"
+import Helpbtn from "./Helpbtn";
 
 
 function TextInput(props: any) {
@@ -39,6 +40,7 @@ const [val, setVal] = useState('');
   return (
     <div>
       <label>
+        <Helpbtn></Helpbtn>
         <input
           type="text"
           value={val}
@@ -49,7 +51,11 @@ const [val, setVal] = useState('');
       </label>
 
       <p></p>
-      <button name="generate" style={{...btnStyle1,...btnStyle2}} onClick={() => props.onGenerate(val)}>
+      <button
+        name="generate"
+        style={{ ...btnStyle1, ...btnStyle2 }}
+        onClick={() => props.onGenerate(val)}
+      >
         Generate
       </button>
       <button name="reset" style={btnStyle1} onClick={onReset}>

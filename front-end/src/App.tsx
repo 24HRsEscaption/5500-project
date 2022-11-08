@@ -10,8 +10,10 @@ import { Bar } from 'react-chartjs-2';
 // load the options file externally for better readability of the component.
 // In the chartOptions object, make sure to add "dragData: true" etc.
 import 'chartjs-plugin-dragdata'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
+Chart.register(ChartDataLabels);
 
 
 class App extends React.Component<any, any>{
@@ -99,7 +101,7 @@ class App extends React.Component<any, any>{
         <br></br>
         <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } />
         <br />
-        <div style={{height: '300px', width: '800px'}}>
+        <div style={{height: '200px', width: '800px'}}>
         <Bar data={this.data} options={{
           indexAxis: 'y' as const,
           maintainAspectRatio: false,
@@ -131,6 +133,19 @@ class App extends React.Component<any, any>{
               onDragEnd: function(e: any, datasetIndex: any, index: any, value: any) {
                 e.target.style.cursor = 'default' 
               },
+            },
+            datalabels: {
+              font: function(context) {
+                var w = context.chart.width;
+                return {
+                  size: w < 512 ? 12 : 14,
+                  weight: 'bold',
+                };
+              },
+              formatter: function(value, context) {
+                // @ts-ignore
+                return context.chart.data.datasets[context.datasetIndex].label;
+              }
             }
           }
         }}/>

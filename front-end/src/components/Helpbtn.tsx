@@ -3,12 +3,13 @@ import Button from "@mui/material/Button";
 import HelpIcon from "@mui/icons-material/Help";
 
 
+
 export default function Helpbtn() {
   const btnStyle1 = {
     display: "inline",
     fontSize: "20px",
     marginTop:"10px",
-    marginLeft: "700px",
+    marginLeft: "850px",
     verticalAlign: "middle",
   };
 

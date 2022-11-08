@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import './App.css';
 
 import TextInput from "./components/TextInput"
-import Tools from './components/Tools';
+
 import Audio from './components/Audio';
-import Autoplay from './components/Autoplay';
+
 import Slider from './components/Slider';
 import { Bar } from 'react-chartjs-2';
 // load the options file externally for better readability of the component.

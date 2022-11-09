@@ -64,25 +64,25 @@ class App extends React.Component<any, any>{
       label: 't',
       data: [20],
       borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: '#3e95cd',
     },
     {
       label: 'e',
       data: [30],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: '#8e5ea2',
     },
     {
       label: 's',
       data: [15],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 212, 285, 0.5)',
+      backgroundColor: '#3cba9f',
     },
     {
       label: 't',
       data: [35],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 262, 335, 0.5)',
+      backgroundColor: '#e8c3b9',
     },
   ],
 };
@@ -95,7 +95,7 @@ class App extends React.Component<any, any>{
       {
         label: "Pitch",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [2,5,7,4]
+        data: [3,5,7,4]
       }
     ]
   };
@@ -107,7 +107,7 @@ class App extends React.Component<any, any>{
       {
         label: "Energy",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [2,5,7,4]
+        data: [6,4,8,5]
       }
     ]
   };
@@ -129,7 +129,8 @@ class App extends React.Component<any, any>{
         <br></br>
         <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } />
         <br />
-        <div style={{height: '200px', width: '800px'}}>
+        <div style={{height: '200px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px'}}><label><b>Duration</b></label></div>  
         <Bar data={this.data} options={{
           indexAxis: 'y' as const,
           maintainAspectRatio: false,

@@ -16,6 +16,8 @@ Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
 
+
+
 class App extends React.Component<any, any>{
   constructor(props: any) {
     super(props);
@@ -85,6 +87,32 @@ class App extends React.Component<any, any>{
   ],
 };
 
+  
+  labelsPitch = ['Pitch'];
+  dataPitch = {
+    labels: ["t", "e", "s", "t"],
+    datasets: [
+      {
+        label: "Pitch",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+        data: [2,5,7,4]
+      }
+    ]
+  };
+
+  labelsEnergy = ['Energy'];
+  dataEnergy = {
+    labels: ["t", "e", "s", "t"],
+    datasets: [
+      {
+        label: "Energy",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+        data: [2,5,7,4]
+      }
+    ]
+  };
+  
+
   render(){
     return (
       <div>
@@ -135,6 +163,7 @@ class App extends React.Component<any, any>{
               },
             },
             datalabels: {
+              //@ts-ignore
               font: function(context) {
                 var w = context.chart.width;
                 return {
@@ -142,6 +171,7 @@ class App extends React.Component<any, any>{
                   weight: 'bold',
                 };
               },
+              //@ts-ignore
               formatter: function(value, context) {
                 // @ts-ignore
                 return context.chart.data.datasets[context.datasetIndex].label;
@@ -149,6 +179,78 @@ class App extends React.Component<any, any>{
             }
           }
         }}/>
+        </div>
+        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px', padding: '20px'}}><label><b>Pitch</b></label></div>
+        <Bar data={this.dataPitch} options={{
+          indexAxis: 'x' as const,
+          maintainAspectRatio: false,
+            plugins: {
+              // @ts-ignore
+              dragData: {
+                round: 1,
+                showTooltip: true,
+                // @ts-ignore
+                onDragStart: function(e) {
+                  // console.log(e)
+                },
+                // @ts-ignore
+                onDrag: function(e, datasetIndex, index, value) {              
+                  e.target.style.cursor = 'grabbing'
+                  // console.log(e, datasetIndex, index, value)
+                },
+                 // @ts-ignore
+                onDragEnd: function(e, datasetIndex, index, value) {
+                  e.target.style.cursor = 'default' 
+                  // console.log(datasetIndex, index, value)
+                },
+            },
+          },
+            scales: {
+              y: {
+                max: 10,
+                min: 1
+              }
+            }
+          }
+        }/>
+        </div>
+        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px', padding: '20px'}}>
+          <label><b>Energy</b></label>
+        </div>
+        <Bar data={this.dataEnergy} options={{
+          indexAxis: 'x' as const,
+          maintainAspectRatio: false,
+            plugins: {
+              // @ts-ignore
+              dragData: {
+                round: 1,
+                showTooltip: true,
+                // @ts-ignore
+                onDragStart: function(e) {
+                  // console.log(e)
+                },
+                // @ts-ignore
+                onDrag: function(e, datasetIndex, index, value) {              
+                  e.target.style.cursor = 'grabbing'
+                  // console.log(e, datasetIndex, index, value)
+                },
+                 // @ts-ignore
+                onDragEnd: function(e, datasetIndex, index, value) {
+                  e.target.style.cursor = 'default' 
+                  // console.log(datasetIndex, index, value)
+                },
+            },
+          },
+            scales: {
+              y: {
+                max: 10,
+                min: 1
+              }
+            }
+          }
+        }/>
         </div>
       </div>
     );

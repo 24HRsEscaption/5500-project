@@ -20,7 +20,6 @@
     "chartjs-plugin-dragdata": "^2.2.4",
     "react": "^18.2.0",
     "react-audio-player": "^0.17.0",
-    "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-range": "^1.8.14",
     "react-scripts": "^5.0.1",
@@ -51,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/d3-drag": "^3.0.1"
   }
 }

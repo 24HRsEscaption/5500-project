@@ -1,5 +1,6 @@
 import re
 import argparse
+import os
 from string import punctuation
 
 import torch
@@ -84,6 +85,15 @@ def preprocess_mandarin(text, preprocess_config):
     return np.array(sequence)
 
 
+def log_variance_predictions(p_predictions, e_predictions, d_rounded, result_path):
+    with open(os.path.join(result_path, "p_predictions.txt"), "w", encoding="utf-8") as f:
+        f.write(str(p_predictions.tolist()))
+    with open(os.path.join(result_path, "e_predictions.txt"), "w", encoding="utf-8") as f:
+        f.write(str(e_predictions.tolist()))
+    with open(os.path.join(result_path, "d_rounded.txt"), "w", encoding="utf-8") as f:
+        f.write(str(d_rounded.tolist()))
+
+
 def synthesize(model, step, configs, vocoder, batchs, control_values):
     preprocess_config, model_config, train_config = configs
     pitch_control, energy_control, duration_control = control_values
@@ -98,6 +108,28 @@ def synthesize(model, step, configs, vocoder, batchs, control_values):
                 e_control=energy_control,
                 d_control=duration_control
             )
+
+            (
+            _,
+            postnet_output,
+            p_predictions,
+            e_predictions,
+            log_d_predictions,
+            d_rounded,
+            src_masks,
+            mel_masks,
+            src_lens,
+            mel_lens,
+            ) = output
+
+            # print(p_predictions)
+            # print(e_predictions)
+            # print(d_rounded)
+            log_variance_predictions(p_predictions, 
+                                    e_predictions, 
+                                    d_rounded, 
+                                    train_config["path"]["result_path"])
+
             synth_samples(
                 batch,
                 output,

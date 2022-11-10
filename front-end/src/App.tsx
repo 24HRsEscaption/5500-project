@@ -16,6 +16,8 @@ Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
 
+
+
 class App extends React.Component<any, any>{
   constructor(props: any) {
     super(props);
@@ -62,28 +64,54 @@ class App extends React.Component<any, any>{
       label: 't',
       data: [20],
       borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: '#3e95cd',
     },
     {
       label: 'e',
       data: [30],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: '#8e5ea2',
     },
     {
       label: 's',
       data: [15],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 212, 285, 0.5)',
+      backgroundColor: '#3cba9f',
     },
     {
       label: 't',
       data: [35],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 262, 335, 0.5)',
+      backgroundColor: '#e8c3b9',
     },
   ],
 };
+
+  
+  labelsPitch = ['Pitch'];
+  dataPitch = {
+    labels: ["t", "e", "s", "t"],
+    datasets: [
+      {
+        label: "Pitch",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+        data: [3,5,7,4]
+      }
+    ]
+  };
+
+  labelsEnergy = ['Energy'];
+  dataEnergy = {
+    labels: ["t", "e", "s", "t"],
+    datasets: [
+      {
+        label: "Energy",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+        data: [6,4,8,5]
+      }
+    ]
+  };
+  
 
   render(){
     return (
@@ -101,7 +129,8 @@ class App extends React.Component<any, any>{
         <br></br>
         <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } />
         <br />
-        <div style={{height: '200px', width: '800px'}}>
+        <div style={{height: '200px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px'}}><label><b>Duration</b></label></div>  
         <Bar data={this.data} options={{
           indexAxis: 'y' as const,
           maintainAspectRatio: false,
@@ -135,6 +164,7 @@ class App extends React.Component<any, any>{
               },
             },
             datalabels: {
+              //@ts-ignore
               font: function(context) {
                 var w = context.chart.width;
                 return {
@@ -142,6 +172,7 @@ class App extends React.Component<any, any>{
                   weight: 'bold',
                 };
               },
+              //@ts-ignore
               formatter: function(value, context) {
                 // @ts-ignore
                 return context.chart.data.datasets[context.datasetIndex].label;
@@ -149,6 +180,78 @@ class App extends React.Component<any, any>{
             }
           }
         }}/>
+        </div>
+        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px', padding: '20px'}}><label><b>Pitch</b></label></div>
+        <Bar data={this.dataPitch} options={{
+          indexAxis: 'x' as const,
+          maintainAspectRatio: false,
+            plugins: {
+              // @ts-ignore
+              dragData: {
+                round: 1,
+                showTooltip: true,
+                // @ts-ignore
+                onDragStart: function(e) {
+                  // console.log(e)
+                },
+                // @ts-ignore
+                onDrag: function(e, datasetIndex, index, value) {              
+                  e.target.style.cursor = 'grabbing'
+                  // console.log(e, datasetIndex, index, value)
+                },
+                 // @ts-ignore
+                onDragEnd: function(e, datasetIndex, index, value) {
+                  e.target.style.cursor = 'default' 
+                  // console.log(datasetIndex, index, value)
+                },
+            },
+          },
+            scales: {
+              y: {
+                max: 10,
+                min: 1
+              }
+            }
+          }
+        }/>
+        </div>
+        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
+        <div style={{marginTop: '130px', padding: '20px'}}>
+          <label><b>Energy</b></label>
+        </div>
+        <Bar data={this.dataEnergy} options={{
+          indexAxis: 'x' as const,
+          maintainAspectRatio: false,
+            plugins: {
+              // @ts-ignore
+              dragData: {
+                round: 1,
+                showTooltip: true,
+                // @ts-ignore
+                onDragStart: function(e) {
+                  // console.log(e)
+                },
+                // @ts-ignore
+                onDrag: function(e, datasetIndex, index, value) {              
+                  e.target.style.cursor = 'grabbing'
+                  // console.log(e, datasetIndex, index, value)
+                },
+                 // @ts-ignore
+                onDragEnd: function(e, datasetIndex, index, value) {
+                  e.target.style.cursor = 'default' 
+                  // console.log(datasetIndex, index, value)
+                },
+            },
+          },
+            scales: {
+              y: {
+                max: 10,
+                min: 1
+              }
+            }
+          }
+        }/>
         </div>
       </div>
     );

@@ -45,6 +45,18 @@
 
    The result will be under `output\result\LJSpeech`.
 
+## Synthesis output
+
+The synthesis results in folder `output\result\LJSpeech` will look like the following
+
+```
+|-d_rounded.txt                                                                                                         |-e_predictions.txt                                                                                                     |-Hello world.png                                                                                                       |-Hello world.wav                                                                                                       |-p_predictions.txt 
+```
+
+1. `Hello world.wav`: audio file of the speech
+2. `Hello world.png`: spectrogram of the audio
+3. `p_predictions.txt`, `e_predictions.txt`, `d_rounded.txt`: variance predictions, i.e. pitch, energy and duration. Each text file contains a 2D list with shape `[batch_size, sequence_length]`.
+
 ## NRC Text-to-Speech project outline
 
 Canada is home to about 70 Indigenous languages from 10 different language groups. Fewer than 500 fluent speakers of the majority of these languages remain today, with most of them being old, as a result of the residential school system and other practices of cultural suppression.

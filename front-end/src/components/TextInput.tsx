@@ -27,15 +27,40 @@ const btnStyle2 = {
   marginLeft: "700px",
   backgroundColor: "lightblue",
 };
+const errorStyles = {
+  marginLeft: '100px',
+  marginTop: '15px',
+  padding: '15px',
+  border: '1px solid red',
+  backgroundColor: '#fcd7d7',
+  width: '830px'
+}
 
 
 const [val, setVal] = useState('');
+const [error, setError] = useState('');
 
   const onReset = () => {
     setVal('');
     props.handleReset();
   }
 
+  const handleGenerate = (val: string) => {
+    if (!val) {
+      setError('Please enter a valid text to generate.');
+      return;
+    }
+    if (val.length > 50) {
+      setError('Please enter text that is shorter than 50 characters.');
+      return;
+    }
+    if (!/^[A-Za-z0-9 ]*$/.test(val)) {
+      setError('Invalid characters found.');
+      return;
+    }
+    setError('');
+    props.onGenerate(val.replace(/\s+/g,' ').trim());
+  }
 
   return (
     <div>
@@ -54,13 +79,18 @@ const [val, setVal] = useState('');
       <button
         name="generate"
         style={{ ...btnStyle1, ...btnStyle2 }}
-        onClick={() => props.onGenerate(val)}
+        onClick={() => handleGenerate(val)}
       >
         Generate
       </button>
       <button name="reset" style={btnStyle1} onClick={onReset}>
         Reset
       </button>
+      <br></br>
+      {
+        error !== '' &&
+        <div style={errorStyles}>{error}</div>
+      }
     </div>
   );
 }

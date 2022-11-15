@@ -59,7 +59,7 @@ const [error, setError] = useState('');
       return;
     }
     setError('');
-    props.onGenerate(val);
+    props.onGenerate(val.replace(/\s+/g,' ').trim());
   }
 
   return (

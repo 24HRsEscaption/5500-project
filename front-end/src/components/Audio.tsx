@@ -33,7 +33,7 @@ const Audio = ({audioName,onClick, src}) => {
         onPause={() => setIsPlaying(false)}
         data-testid="audio"
       ></audio>
-      <span data-testid="status-text" style={isPlaying? statusStyleOn:statusStyleOff}>Status: {isPlaying ? "On" : "Off"}</span>
+      {/* <span data-testid="status-text" style={isPlaying? statusStyleOn:statusStyleOff}>Status: {isPlaying ? "On" : "Off"}</span> */}
     </div>
   );
 }

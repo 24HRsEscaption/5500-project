@@ -1,18 +1,31 @@
+import { borderRadius } from "@mui/system";
 import React from "react";
 import {useState} from "react"
 import Helpbtn from "./Helpbtn";
+import {FaTrash} from "react-icons/fa";
 
 
 function TextInput(props: any) {
 const textBoxStyles = {
   border: "1px solid black",
   width: "800px",
-  fontSize: "34px",
-  height: "50px",
+  fontSize: "20px",
+  height: "120px",
   padding: "30px",
   marginTop: "20px",
   marginLeft: "100px",
   fontFamily: "Arial",
+  borderRadius: "20px",
+  // textAlign: "left",
+};
+
+
+const button = {
+  display: "block",
+  justifyContent: "right",
+  alignItems: "right",
+  marginLeft: "100px",
+  
 };
 
 const btnStyle1 = {
@@ -20,13 +33,17 @@ const btnStyle1 = {
   height: "50px",
   display: "inline",
   fontSize: "20px",
-  marginLeft: "60px",
   verticalAlign:"middle",
+  borderRadius: "15px",
+  margin: "10px",
 };
-const btnStyle2 = {
-  marginLeft: "700px",
-  backgroundColor: "lightblue",
-};
+// const btnStyle2 = {
+//   margin: "10px",
+  
+
+//   backgroundColor: "lightblue",
+//   borderRadius: "20px",
+// };
 const errorStyles = {
   marginLeft: '100px',
   marginTop: '15px',
@@ -66,26 +83,28 @@ const [error, setError] = useState('');
     <div>
       <label>
         <Helpbtn></Helpbtn>
-        <input
-          type="text"
+        <textarea
           value={val}
           style={textBoxStyles}
-          placeholder="Type in a phrase"
+          placeholder="Enter your text here"
           onChange={(e) => setVal(e.target.value)}
         />
+        <span style={{position:"absolute", top: "260px", right: "440px"}}><FaTrash onClick={onReset}/></span>
       </label>
 
       <p></p>
+      <div style={button}>
       <button
         name="generate"
-        style={{ ...btnStyle1, ...btnStyle2 }}
+        style={{ ...btnStyle1, }}
         onClick={() => handleGenerate(val)}
       >
         Generate
       </button>
-      <button name="reset" style={btnStyle1} onClick={onReset}>
+      {/* <button name="reset" style={btnStyle1} onClick={onReset}>
         Reset
-      </button>
+      </button> */}
+      </div>
       <br></br>
       {
         error !== '' &&

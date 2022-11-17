@@ -118,18 +118,18 @@ class App extends React.Component<any, any>{
       <div>
         <br></br>
         <TextInput handleReset={this.onReset.bind(this)} onGenerate={this.onGenerate.bind(this)} />
-        <br></br>
-        <br></br>
+        {/* <br></br>
+        <br></br> */}
         <Audio audioName="Audio" onClick={() => {}} src={this.state.src}></Audio>
         <br></br>
-        <br></br>
-        <Slider name="Speed" val={this.state.speed} onChange={(val: any) => this.setState({ speed: val }) } />
-        <br></br>
-        <Slider name="Pitch" val={this.state.pitch} onChange={(val: any) => this.setState({ pitch: val }) } />
-        <br></br>
-        <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } />
-        <br />
-        <div style={{height: '200px', width: '800px', display:'flex', padding:'20px'}}>
+        {/* <br></br> */}
+        {/* <Slider name="Speed" val={this.state.speed} onChange={(val: any) => this.setState({ speed: val }) } /> */}
+        {/* <br></br> */}
+        {/* <Slider name="Pitch" val={this.state.pitch} onChange={(val: any) => this.setState({ pitch: val }) } /> */}
+        {/* <br></br> */}
+        {/* <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } /> */}
+        {/* <br /> */}
+        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
         <div style={{marginTop: '130px'}}><label><b>Duration</b></label></div>  
         <Bar data={this.data} options={{
           indexAxis: 'y' as const,

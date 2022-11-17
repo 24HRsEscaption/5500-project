@@ -9,7 +9,6 @@ export default function Helpbtn() {
   const btnStyle1 = {
     display: "block",
     fontSize: "15px",
-    marginTop:"10px",
     marginLeft: "900px",
     verticalAlign: "middle",
   };

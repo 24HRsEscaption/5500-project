@@ -5,7 +5,7 @@ import TextInput from "./components/TextInput"
 
 import Audio from './components/Audio';
 
-import Slider from './components/Slider';
+
 import { Bar } from 'react-chartjs-2';
 // load the options file externally for better readability of the component.
 // In the chartOptions object, make sure to add "dragData: true" etc.
@@ -116,11 +116,21 @@ class App extends React.Component<any, any>{
   render(){
     return (
       <div>
+        <h1 style={{marginLeft: "110px"}}>
+          FastPitch: Parallel Text-to-speech with Pitch Prediction
+        </h1>
         <br></br>
-        <TextInput handleReset={this.onReset.bind(this)} onGenerate={this.onGenerate.bind(this)} />
+        <TextInput
+          handleReset={this.onReset.bind(this)}
+          onGenerate={this.onGenerate.bind(this)}
+        />
         {/* <br></br>
         <br></br> */}
-        <Audio audioName="Audio" onClick={() => {}} src={this.state.src}></Audio>
+        <Audio
+          audioName="Audio"
+          onClick={() => {}}
+          src={this.state.src}
+        ></Audio>
         <br></br>
         {/* <br></br> */}
         {/* <Slider name="Speed" val={this.state.speed} onChange={(val: any) => this.setState({ speed: val }) } /> */}
@@ -129,129 +139,178 @@ class App extends React.Component<any, any>{
         {/* <br></br> */}
         {/* <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } /> */}
         {/* <br /> */}
-        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
-        <div style={{marginTop: '130px'}}><label><b>Duration</b></label></div>  
-        <Bar data={this.data} options={{
-          indexAxis: 'y' as const,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              stacked: true,
-              max: 100,
-              min: 0
-            },
-            y: {
-              stacked: true,
-              max: 100,
-              min: 0
-            }
-          },
-          plugins: {
-            // @ts-ignore
-            dragData: {
-              round: 1,
-              showTooltip: true,
-              onDragStart: function(e: any) {
-                // console.log(e)
+        <div
+          style={{
+            height: "300px",
+            width: "800px",
+            display: "flex",
+            padding: "20px",
+          }}
+        >
+          <div style={{ marginTop: "130px" }}>
+            <label>
+              <b>Duration</b>
+            </label>
+          </div>
+          <Bar
+            data={this.data}
+            options={{
+              indexAxis: "y" as const,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  stacked: true,
+                  max: 100,
+                  min: 0,
+                },
+                y: {
+                  stacked: true,
+                  max: 100,
+                  min: 0,
+                },
               },
-              onDrag: function(e: any, datasetIndex: any, index: any, value: number) {              
-                e.target.style.cursor = 'grabbing'
-                if (value < 0) return false
-                // console.log(e, datasetIndex, index, value)
-              },
-              onDragEnd: function(e: any, datasetIndex: any, index: any, value: any) {
-                e.target.style.cursor = 'default' 
-              },
-            },
-            datalabels: {
-              //@ts-ignore
-              font: function(context) {
-                var w = context.chart.width;
-                return {
-                  size: w < 512 ? 12 : 14,
-                  weight: 'bold',
-                };
-              },
-              //@ts-ignore
-              formatter: function(value, context) {
+              plugins: {
                 // @ts-ignore
-                return context.chart.data.datasets[context.datasetIndex].label;
-              }
-            }
-          }
-        }}/>
+                dragData: {
+                  round: 1,
+                  showTooltip: true,
+                  onDragStart: function (e: any) {
+                    // console.log(e)
+                  },
+                  onDrag: function (
+                    e: any,
+                    datasetIndex: any,
+                    index: any,
+                    value: number
+                  ) {
+                    e.target.style.cursor = "grabbing";
+                    if (value < 0) return false;
+                    // console.log(e, datasetIndex, index, value)
+                  },
+                  onDragEnd: function (
+                    e: any,
+                    datasetIndex: any,
+                    index: any,
+                    value: any
+                  ) {
+                    e.target.style.cursor = "default";
+                  },
+                },
+                datalabels: {
+                  //@ts-ignore
+                  font: function (context) {
+                    var w = context.chart.width;
+                    return {
+                      size: w < 512 ? 12 : 14,
+                      weight: "bold",
+                    };
+                  },
+                  //@ts-ignore
+                  formatter: function (value, context) {
+                    // @ts-ignore
+                    return context.chart.data.datasets[context.datasetIndex]
+                      .label;
+                  },
+                },
+              },
+            }}
+          />
         </div>
-        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
-        <div style={{marginTop: '130px', padding: '20px'}}><label><b>Pitch</b></label></div>
-        <Bar data={this.dataPitch} options={{
-          indexAxis: 'x' as const,
-          maintainAspectRatio: false,
-            plugins: {
-              // @ts-ignore
-              dragData: {
-                round: 1,
-                showTooltip: true,
+        <div
+          style={{
+            height: "300px",
+            width: "800px",
+            display: "flex",
+            padding: "20px",
+          }}
+        >
+          <div style={{ marginTop: "130px", padding: "20px" }}>
+            <label>
+              <b>Pitch</b>
+            </label>
+          </div>
+          <Bar
+            data={this.dataPitch}
+            options={{
+              indexAxis: "x" as const,
+              maintainAspectRatio: false,
+              plugins: {
                 // @ts-ignore
-                onDragStart: function(e) {
-                  // console.log(e)
+                dragData: {
+                  round: 1,
+                  showTooltip: true,
+                  // @ts-ignore
+                  onDragStart: function (e) {
+                    // console.log(e)
+                  },
+                  // @ts-ignore
+                  onDrag: function (e, datasetIndex, index, value) {
+                    e.target.style.cursor = "grabbing";
+                    // console.log(e, datasetIndex, index, value)
+                  },
+                  // @ts-ignore
+                  onDragEnd: function (e, datasetIndex, index, value) {
+                    e.target.style.cursor = "default";
+                    // console.log(datasetIndex, index, value)
+                  },
                 },
-                // @ts-ignore
-                onDrag: function(e, datasetIndex, index, value) {              
-                  e.target.style.cursor = 'grabbing'
-                  // console.log(e, datasetIndex, index, value)
+              },
+              scales: {
+                y: {
+                  max: 10,
+                  min: 1,
                 },
-                 // @ts-ignore
-                onDragEnd: function(e, datasetIndex, index, value) {
-                  e.target.style.cursor = 'default' 
-                  // console.log(datasetIndex, index, value)
-                },
-            },
-          },
-            scales: {
-              y: {
-                max: 10,
-                min: 1
-              }
-            }
-          }
-        }/>
+              },
+            }}
+          />
         </div>
-        <div style={{height: '300px', width: '800px', display:'flex', padding:'20px'}}>
-        <div style={{marginTop: '130px', padding: '20px'}}>
-          <label><b>Energy</b></label>
-        </div>
-        <Bar data={this.dataEnergy} options={{
-          indexAxis: 'x' as const,
-          maintainAspectRatio: false,
-            plugins: {
-              // @ts-ignore
-              dragData: {
-                round: 1,
-                showTooltip: true,
+        <div
+          style={{
+            height: "300px",
+            width: "800px",
+            display: "flex",
+            padding: "20px",
+          }}
+        >
+          <div style={{ marginTop: "130px", padding: "20px" }}>
+            <label>
+              <b>Energy</b>
+            </label>
+          </div>
+          <Bar
+            data={this.dataEnergy}
+            options={{
+              indexAxis: "x" as const,
+              maintainAspectRatio: false,
+              plugins: {
                 // @ts-ignore
-                onDragStart: function(e) {
-                  // console.log(e)
+                dragData: {
+                  round: 1,
+                  showTooltip: true,
+                  // @ts-ignore
+                  onDragStart: function (e) {
+                    // console.log(e)
+                  },
+                  // @ts-ignore
+                  onDrag: function (e, datasetIndex, index, value) {
+                    e.target.style.cursor = "grabbing";
+                    // console.log(e, datasetIndex, index, value)
+                  },
+                  // @ts-ignore
+                  onDragEnd: function (e, datasetIndex, index, value) {
+                    e.target.style.cursor = "default";
+                    // console.log(datasetIndex, index, value)
+                  },
                 },
-                // @ts-ignore
-                onDrag: function(e, datasetIndex, index, value) {              
-                  e.target.style.cursor = 'grabbing'
-                  // console.log(e, datasetIndex, index, value)
+              },
+              scales: {
+                y: {
+                  max: 10,
+                  min: 1,
                 },
-                 // @ts-ignore
-                onDragEnd: function(e, datasetIndex, index, value) {
-                  e.target.style.cursor = 'default' 
-                  // console.log(datasetIndex, index, value)
-                },
-            },
-          },
-            scales: {
-              y: {
-                max: 10,
-                min: 1
-              }
-            }
-          }
-        }/>
+              },
+            }}
+          />
         </div>
       </div>
     );

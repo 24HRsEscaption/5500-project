@@ -28,7 +28,7 @@ const button = {
   
 };
 
-const btnStyle1 = {
+const generateBtn= {
   width: "100px",
   height: "50px",
   display: "inline",
@@ -96,12 +96,12 @@ const [error, setError] = useState('');
       <div style={button}>
       <button
         name="generate"
-        style={{ ...btnStyle1, }}
+        style={{ ...generateBtn }}
         onClick={() => handleGenerate(val)}
       >
         Generate
       </button>
-      {/* <button name="reset" style={btnStyle1} onClick={onReset}>
+      {/* <button name="reset" style={generateBtn} onClick={onReset}>
         Reset
       </button> */}
       </div>

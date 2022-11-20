@@ -2,6 +2,7 @@ from flask import Flask, send_file, request, make_response
 import json
 import sys
 import synthesize  
+import text2phones
 
 app = Flask(__name__)
 
@@ -30,5 +31,23 @@ def AudioHandler():
             mimetype='audio/wav'
         )
     )
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
+@app.route('/get_phones', methods=['POST'])
+def Text2PhoneHandler():
+    kwargs = {}
+    request_dict = json.loads(request.get_data())
+    print(request_dict)
+
+    if 'text' not in request_dict:
+        return '`text` param not provided', 400
+    
+    kwargs['text'] = request_dict.get('text')
+    kwargs['lex_path'] = request_dict.get('lex_path', "lexicon/librispeech-lexicon.txt")
+
+    result = text2phones.get_phones(**kwargs)
+    response = make_response(result)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response

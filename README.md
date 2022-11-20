@@ -45,6 +45,13 @@
 
    The result will be under `output\result\LJSpeech`.
 
+## Steps to run the project
+
+1. cd into `backend/NEU-tts-2022`
+2. Activate conda env, `conda activate fastspeech` (if you get errors from Flask, do `pip install -U flask` first)
+3. Start the flask app using `flask --app audio_handler run`. This will start up the backend.
+4. In a separate terminal window, cd into `frontend` and run `npm install && npm start` to start the frontend server.
+
 ## Synthesis output
 
 The synthesis results in folder `output\result\LJSpeech` will look like the following

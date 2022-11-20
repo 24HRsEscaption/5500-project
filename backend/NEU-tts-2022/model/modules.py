@@ -82,6 +82,12 @@ class VarianceAdaptor(nn.Module):
         if target is not None:
             embedding = self.pitch_embedding(torch.bucketize(target, self.pitch_bins))
         else:
+            try:
+                control = eval(control)
+                assert isinstance(control, list)
+                control = torch.tensor(control).to(prediction.device)
+            except Exception as e:
+                pass
             prediction = prediction * control
             embedding = self.pitch_embedding(
                 torch.bucketize(prediction, self.pitch_bins)
@@ -93,6 +99,12 @@ class VarianceAdaptor(nn.Module):
         if target is not None:
             embedding = self.energy_embedding(torch.bucketize(target, self.energy_bins))
         else:
+            try:
+                control = eval(control)
+                assert isinstance(control, list)
+                control = torch.tensor(control).to(prediction.device)
+            except Exception as e:
+                pass
             prediction = prediction * control
             embedding = self.energy_embedding(
                 torch.bucketize(prediction, self.energy_bins)
@@ -129,6 +141,12 @@ class VarianceAdaptor(nn.Module):
             x, mel_len = self.length_regulator(x, duration_target, max_len)
             duration_rounded = duration_target
         else:
+            try:
+                d_control = eval(d_control)
+                assert isinstance(d_control, list)
+                d_control = torch.tensor(d_control).to(log_duration_prediction.device)
+            except Exception as e:
+                pass
             duration_rounded = torch.clamp(
                 (torch.round(torch.exp(log_duration_prediction) - 1) * d_control),
                 min=0,

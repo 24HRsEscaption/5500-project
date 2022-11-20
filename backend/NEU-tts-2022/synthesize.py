@@ -229,19 +229,19 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--pitch_control",
-        type=float,
+        # type=float,
         default=1.0,
         help="control the pitch of the whole utterance, larger value for higher pitch",
     )
     parser.add_argument(
         "--energy_control",
-        type=float,
+        # type=float,
         default=1.0,
         help="control the energy of the whole utterance, larger value for larger volume",
     )
     parser.add_argument(
         "--duration_control",
-        type=float,
+        # type=float,
         default=1.0,
         help="control the speed of the whole utterance, larger value for slower speaking rate",
     )

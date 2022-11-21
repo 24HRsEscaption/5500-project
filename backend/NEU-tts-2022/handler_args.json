@@ -1,0 +1,10 @@
+{
+    "mode": "single",
+    "restore_step": 900000,
+    "preprocess_config": "config/LJSpeech/preprocess.yaml",
+    "model_config": "config/LJSpeech/model.yaml",
+    "train_config": "config/LJSpeech/train.yaml",
+    "source": null,
+    "speaker_id": 0,
+    "lex_path": "lexicon/librispeech-lexicon.txt"
+}

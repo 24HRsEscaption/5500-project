@@ -124,21 +124,12 @@ class App extends React.Component<any, any>{
           handleReset={this.onReset.bind(this)}
           onGenerate={this.onGenerate.bind(this)}
         />
-        {/* <br></br>
-        <br></br> */}
         <Audio
           audioName="Audio"
           onClick={() => {}}
           src={this.state.src}
         ></Audio>
         <br></br>
-        {/* <br></br> */}
-        {/* <Slider name="Speed" val={this.state.speed} onChange={(val: any) => this.setState({ speed: val }) } /> */}
-        {/* <br></br> */}
-        {/* <Slider name="Pitch" val={this.state.pitch} onChange={(val: any) => this.setState({ pitch: val }) } /> */}
-        {/* <br></br> */}
-        {/* <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } /> */}
-        {/* <br /> */}
         <div
           style={{
             height: "300px",
@@ -185,7 +176,6 @@ class App extends React.Component<any, any>{
                   ) {
                     e.target.style.cursor = "grabbing";
                     if (value < 0) return false;
-                    // console.log(e, datasetIndex, index, value)
                   },
                   onDragEnd: function (
                     e: any,
@@ -241,17 +231,14 @@ class App extends React.Component<any, any>{
                   showTooltip: true,
                   // @ts-ignore
                   onDragStart: function (e) {
-                    // console.log(e)
                   },
                   // @ts-ignore
                   onDrag: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "grabbing";
-                    // console.log(e, datasetIndex, index, value)
                   },
                   // @ts-ignore
                   onDragEnd: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "default";
-                    // console.log(datasetIndex, index, value)
                   },
                 },
               },
@@ -289,17 +276,14 @@ class App extends React.Component<any, any>{
                   showTooltip: true,
                   // @ts-ignore
                   onDragStart: function (e) {
-                    // console.log(e)
                   },
                   // @ts-ignore
                   onDrag: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "grabbing";
-                    // console.log(e, datasetIndex, index, value)
                   },
                   // @ts-ignore
                   onDragEnd: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "default";
-                    // console.log(datasetIndex, index, value)
                   },
                 },
               },
@@ -313,10 +297,7 @@ class App extends React.Component<any, any>{
           />
         </div>
       </div>
-    );
-
-    
-   
+    );   
   } 
 }
 

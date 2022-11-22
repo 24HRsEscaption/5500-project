@@ -10,16 +10,16 @@ const Audio = ({audioName,onClick, src}) => {
     fontFamily: "Arial",
     verticalAlign: "middle",
   };
-  const statusStyleOn = {
+
+  const statusStyle = {
     verticalAlign: "middle",
-    marginLeft:"140px",
-    backgroundColor:"skyblue",
+    marginLeft: "140px",
+  };    
+  
+  const statusStyleOff = {...statusStyle, backgroundColor:"lightgrey"};
+  const statusStyleOn = {...statusStyle, backgroundColor: "skyblue",
   };
-    const statusStyleOff = {
-      verticalAlign: "middle",
-      marginLeft: "140px",
-      backgroundColor: "lightgrey",
-    };
+
 	const [isPlaying, setIsPlaying] = useState(false);
 	return (
     <div>
@@ -33,7 +33,7 @@ const Audio = ({audioName,onClick, src}) => {
         onPause={() => setIsPlaying(false)}
         data-testid="audio"
       ></audio>
-      {/* <span data-testid="status-text" style={isPlaying? statusStyleOn:statusStyleOff}>Status: {isPlaying ? "On" : "Off"}</span> */}
+      <span data-testid="status-text" style={isPlaying? statusStyleOn:statusStyleOff}>Status: {isPlaying ? "On" : "Off"}</span>
     </div>
   );
 }

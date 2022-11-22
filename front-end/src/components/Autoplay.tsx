@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Autoplay() {
   return (
@@ -7,10 +7,9 @@ function Autoplay() {
         <strong>Autoplay&nbsp;&nbsp; </strong>
         <input type="checkbox" />
         <span className="slider round"></span>
-        
       </label>
     </div>
   );
 }
 
-export default Autoplay
+export default Autoplay;

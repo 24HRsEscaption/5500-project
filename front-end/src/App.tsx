@@ -12,6 +12,8 @@ import { Bar } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
@@ -115,10 +117,12 @@ class App extends React.Component<any, any>{
 
   render(){
     return (
-      <div>
-        <h1 style={{marginLeft: "110px"}}>
-          FastPitch: Parallel Text-to-speech with Pitch Prediction
-        </h1>
+      <div className="container">
+        <div className="row text-center mt-5">
+          <h1>
+            FastPitch: Parallel Text-to-speech with Pitch Prediction
+          </h1>
+        </div>
         <br></br>
         <TextInput
           handleReset={this.onReset.bind(this)}
@@ -133,9 +137,10 @@ class App extends React.Component<any, any>{
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px" }}>
@@ -158,6 +163,7 @@ class App extends React.Component<any, any>{
                   stacked: true,
                   max: 100,
                   min: 0,
+                  display: false
                 },
               },
               plugins: {
@@ -209,9 +215,10 @@ class App extends React.Component<any, any>{
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px", padding: "20px" }}>
@@ -254,9 +261,10 @@ class App extends React.Component<any, any>{
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px", padding: "20px" }}>

@@ -6,17 +6,11 @@ import text2phones
 
 app = Flask(__name__)
 
+with open("handler_args.json", "r") as f:
+    args = json.load(f)
+
 @app.route('/get_audio', methods=['POST'])
 def AudioHandler():
-    args = {
-      'mode': 'single',
-      'restore_step': 900000,
-      'preprocess_config': 'config/LJSpeech/preprocess.yaml',
-      'model_config': 'config/LJSpeech/model.yaml',
-      'train_config': 'config/LJSpeech/train.yaml',
-      'source': None,
-      'speaker_id': 0
-    }
     # Check source texts
     request_dict = json.loads(request.get_data())
     print(request_dict)
@@ -45,7 +39,7 @@ def Text2PhoneHandler():
         return '`text` param not provided', 400
     
     kwargs['text'] = request_dict.get('text')
-    kwargs['lex_path'] = request_dict.get('lex_path', "lexicon/librispeech-lexicon.txt")
+    kwargs['lex_path'] = request_dict.get('lex_path', args["lex_path"])
 
     result = text2phones.get_phones(**kwargs)
     response = make_response(result)

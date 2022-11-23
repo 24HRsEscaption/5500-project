@@ -12,20 +12,15 @@ const textBoxStyles = {
   fontSize: "20px",
   height: "120px",
   padding: "30px",
-  marginTop: "20px",
-  marginLeft: "100px",
+  marginLeft: "auto",
+  marginRight: "auto",
   fontFamily: "Arial",
-  borderRadius: "20px",
-  // textAlign: "left",
 };
 
 
 const button = {
   display: "block",
-  justifyContent: "right",
-  alignItems: "right",
-  marginLeft: "100px",
-  
+  justifyContent: "right",  
 };
 
 const generateBtn= {
@@ -35,15 +30,10 @@ const generateBtn= {
   fontSize: "20px",
   verticalAlign:"middle",
   borderRadius: "15px",
-  margin: "10px",
+  marginLeft: "auto",
+  marginRight: "auto"
 };
-// const btnStyle2 = {
-//   margin: "10px",
   
-
-//   backgroundColor: "lightblue",
-//   borderRadius: "20px",
-// };
 const errorStyles = {
   marginLeft: '100px',
   marginTop: '15px',
@@ -80,31 +70,26 @@ const [error, setError] = useState('');
   }
 
   return (
-    <div>
-      <label>
-        <Helpbtn></Helpbtn>
-        <textarea
-          value={val}
-          style={textBoxStyles}
-          placeholder="Enter your text here"
-          onChange={(e) => setVal(e.target.value)}
-        />
-        <span style={{position:"absolute", top: "260px", right: "440px"}}><FaTrash onClick={onReset}/></span>
-      </label>
+    <div className="row">
+      <Helpbtn></Helpbtn>
+      <textarea
+        value={val}
+        className="rounded mt-5"
+        style={textBoxStyles}
+        placeholder="Enter your text here"
+        onChange={(e) => setVal(e.target.value)}
+      />
+      <span style={{position:"absolute", top: "260px", right: "440px"}}><FaTrash onClick={onReset}/></span>
 
       <p></p>
-      <div style={button}>
       <button
         name="generate"
         style={{ ...generateBtn }}
+        className="d-flex justify-content-center mb-5"
         onClick={() => handleGenerate(val)}
       >
         Generate
       </button>
-      {/* <button name="reset" style={generateBtn} onClick={onReset}>
-        Reset
-      </button> */}
-      </div>
       <br></br>
       {
         error !== '' &&

@@ -5,10 +5,10 @@ import React, { useState, useEffect, useRef } from 'react';
 const Audio = ({audioName,onClick, src}) => {
 
   const audioStyles = {
-    marginLeft: "100px",
-    width: "600px",
-    fontFamily: "Arial",
-    verticalAlign: "middle",
+    width: "100%",
+    maxWidth: "600px",
+    display: "block",
+    margin: "0 auto"
   };
 
   const statusStyle = {
@@ -23,8 +23,8 @@ const Audio = ({audioName,onClick, src}) => {
 	const [isPlaying, setIsPlaying] = useState(false);
 	return (
     <div>
-      {/* <h3> {audioName} </h3> */}
       <audio
+        className="mb-5"
         style={audioStyles}
         src={src || 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'}
         preload="metadata"
@@ -33,7 +33,6 @@ const Audio = ({audioName,onClick, src}) => {
         onPause={() => setIsPlaying(false)}
         data-testid="audio"
       ></audio>
-      <span data-testid="status-text" style={isPlaying? statusStyleOn:statusStyleOff}>Status: {isPlaying ? "On" : "Off"}</span>
     </div>
   );
 }

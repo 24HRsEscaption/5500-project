@@ -12,6 +12,8 @@ import { Bar } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
@@ -115,36 +117,30 @@ class App extends React.Component<any, any>{
 
   render(){
     return (
-      <div>
-        <h1 style={{marginLeft: "110px"}}>
-          FastPitch: Parallel Text-to-speech with Pitch Prediction
-        </h1>
+      <div className="container">
+        <div className="row text-center mt-5">
+          <h1>
+            FastPitch: Parallel Text-to-speech with Pitch Prediction
+          </h1>
+        </div>
         <br></br>
         <TextInput
           handleReset={this.onReset.bind(this)}
           onGenerate={this.onGenerate.bind(this)}
         />
-        {/* <br></br>
-        <br></br> */}
         <Audio
           audioName="Audio"
           onClick={() => {}}
           src={this.state.src}
         ></Audio>
         <br></br>
-        {/* <br></br> */}
-        {/* <Slider name="Speed" val={this.state.speed} onChange={(val: any) => this.setState({ speed: val }) } /> */}
-        {/* <br></br> */}
-        {/* <Slider name="Pitch" val={this.state.pitch} onChange={(val: any) => this.setState({ pitch: val }) } /> */}
-        {/* <br></br> */}
-        {/* <Slider name="Energy" val={this.state.energy} onChange={(val: any) => this.setState({ energy: val }) } /> */}
-        {/* <br /> */}
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px" }}>
@@ -167,6 +163,7 @@ class App extends React.Component<any, any>{
                   stacked: true,
                   max: 100,
                   min: 0,
+                  display: false
                 },
               },
               plugins: {
@@ -185,7 +182,6 @@ class App extends React.Component<any, any>{
                   ) {
                     e.target.style.cursor = "grabbing";
                     if (value < 0) return false;
-                    // console.log(e, datasetIndex, index, value)
                   },
                   onDragEnd: function (
                     e: any,
@@ -219,9 +215,10 @@ class App extends React.Component<any, any>{
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px", padding: "20px" }}>
@@ -241,17 +238,14 @@ class App extends React.Component<any, any>{
                   showTooltip: true,
                   // @ts-ignore
                   onDragStart: function (e) {
-                    // console.log(e)
                   },
                   // @ts-ignore
                   onDrag: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "grabbing";
-                    // console.log(e, datasetIndex, index, value)
                   },
                   // @ts-ignore
                   onDragEnd: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "default";
-                    // console.log(datasetIndex, index, value)
                   },
                 },
               },
@@ -267,9 +261,10 @@ class App extends React.Component<any, any>{
         <div
           style={{
             height: "300px",
-            width: "800px",
+            width: "80%",
             display: "flex",
             padding: "20px",
+            margin: "0 auto"
           }}
         >
           <div style={{ marginTop: "130px", padding: "20px" }}>
@@ -289,17 +284,14 @@ class App extends React.Component<any, any>{
                   showTooltip: true,
                   // @ts-ignore
                   onDragStart: function (e) {
-                    // console.log(e)
                   },
                   // @ts-ignore
                   onDrag: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "grabbing";
-                    // console.log(e, datasetIndex, index, value)
                   },
                   // @ts-ignore
                   onDragEnd: function (e, datasetIndex, index, value) {
                     e.target.style.cursor = "default";
-                    // console.log(datasetIndex, index, value)
                   },
                 },
               },
@@ -313,10 +305,7 @@ class App extends React.Component<any, any>{
           />
         </div>
       </div>
-    );
-
-    
-   
+    );   
   } 
 }
 

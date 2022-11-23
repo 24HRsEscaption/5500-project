@@ -10,16 +10,16 @@ const Audio = ({audioName,onClick, src}) => {
     display: "block",
     margin: "0 auto"
   };
-  const statusStyleOn = {
+
+  const statusStyle = {
     verticalAlign: "middle",
-    marginLeft:"140px",
-    backgroundColor:"skyblue",
+    marginLeft: "140px",
+  };    
+  
+  const statusStyleOff = {...statusStyle, backgroundColor:"lightgrey"};
+  const statusStyleOn = {...statusStyle, backgroundColor: "skyblue",
   };
-    const statusStyleOff = {
-      verticalAlign: "middle",
-      marginLeft: "140px",
-      backgroundColor: "lightgrey",
-    };
+
 	const [isPlaying, setIsPlaying] = useState(false);
 	return (
     <div>

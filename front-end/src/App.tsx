@@ -38,6 +38,19 @@ class App extends React.Component<any, any>{
       energy: [1]
     });
   }
+
+  async getPhones(text: string) {
+    const response = await fetch("http://127.0.0.1:5000/get_phones", {
+      method: "POST",
+      body: JSON.stringify({
+        text: text,
+      }),
+    });
+    this.setState({
+      phonemes: await response.json(),
+    });
+  }
+
   async onGenerate(text: string) {
     const response = await fetch(
       'http://localhost:5000/get_audio',
@@ -113,7 +126,6 @@ class App extends React.Component<any, any>{
       }
     ]
   };
-  
 
   render(){
     return (

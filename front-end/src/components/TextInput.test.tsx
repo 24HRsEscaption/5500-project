@@ -6,17 +6,17 @@ afterEach(cleanup);
 
 it('TextInput updates text', () => {
   render(<TextInput />);
-  const input = screen.getByPlaceholderText('Type in a phrase');
+  const input = screen.getByPlaceholderText('Enter your text here');
   fireEvent.change(input, {target: {value: 'Hello World'}});
   expect((input as HTMLInputElement).value).toBe('Hello World');
 });
 
 it('TextInput resets text', () => {
-  render(<TextInput />);
-  const input = screen.getByPlaceholderText('Type in a phrase');
+  render(<TextInput handleReset={() => {}} />);
+  const input = screen.getByPlaceholderText('Enter your text here');
   fireEvent.change(input, {target: {value: 'Hello World'}});
   expect((input as HTMLInputElement).value).toBe('Hello World');
-  const resetButton = screen.getByText('Reset Text');
+  const resetButton = screen.getByTestId('reset');
   fireEvent.click(resetButton);
   expect((input as HTMLInputElement).value).toBe('');
 });

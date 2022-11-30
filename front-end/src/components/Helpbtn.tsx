@@ -11,11 +11,10 @@ const helptext="Hello User.\n1. Type in a phrase and modify the /SPEED/PITCH/ENE
 
   return (
     <div className="helpIcon justify-content-end d-flex">
-      <BsQuestionCircle onClick={() => alert(helptext)} style={{ fontSize: '40px' }}/>
-      <br></br>
+      <div>
+        <BsQuestionCircle onClick={() => alert(helptext)} style={{ fontSize: '40px' }}/>
+      </div>
       <div style={{justifyContent:"left"}}>Help</div>
-    
-  
     </div>
   );
 }

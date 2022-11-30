@@ -132,7 +132,7 @@ class App extends React.Component<any, any>{
       <div className="container">
         <div className="row text-center mt-5">
           <h1>
-            FastPitch: Parallel Text-to-speech with Pitch Prediction
+            FastSpeech2: Parallel Text-to-speech with Pitch Prediction
           </h1>
         </div>
         <br></br>

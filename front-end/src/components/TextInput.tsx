@@ -79,7 +79,7 @@ const [error, setError] = useState('');
         placeholder="Enter your text here"
         onChange={(e) => setVal(e.target.value)}
       />
-      <span style={{position:"absolute", top: "260px", right: "440px"}}><FaTrash onClick={onReset}/></span>
+      <span style={{position:"absolute", top: "260px", right: "440px"}}><FaTrash data-testid="reset" onClick={onReset}/></span>
 
       <p></p>
       <button

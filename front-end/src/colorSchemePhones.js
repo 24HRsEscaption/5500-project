@@ -86,3 +86,13 @@ const consonantColors = [
   "#ff7729",
   "#ff7f0e",
 ];
+
+let vowelColorMap = {};
+vowels.forEach((key, i) => vowelColorMap[key] = vowelColors[i]);
+// console.log(vowelColorMap);
+
+let consonantColorMap = {};
+consonants.forEach((key, i) => consonantColorMap[key] = consonantColors[i]);
+// console.log(consonantColorMap);
+
+export default { vowelColorMap, consonantColorMap }

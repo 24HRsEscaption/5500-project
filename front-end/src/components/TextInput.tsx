@@ -6,52 +6,54 @@ import {FaTrash} from "react-icons/fa";
 
 
 function TextInput(props: any) {
-const textBoxStyles = {
-  border: "1px solid black",
-  width: "800px",
-  fontSize: "20px",
-  height: "120px",
-  padding: "30px",
-  marginLeft: "auto",
-  marginRight: "auto",
-  fontFamily: "Arial",
-};
+  const textBoxStyles = {
+    border: "1px solid black",
+    width: "800px",
+    fontSize: "20px",
+    height: "120px",
+    padding: "30px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontFamily: "Arial",
+  };
 
 
-const button = {
-  display: "block",
-  justifyContent: "right",  
-};
+  const button = {
+    display: "block",
+    justifyContent: "right",  
+  };
 
-const generateBtn= {
-  width: "100px",
-  height: "50px",
-  display: "inline",
-  fontSize: "20px",
-  verticalAlign:"middle",
-  borderRadius: "15px",
-  marginLeft: "auto",
-  marginRight: "auto"
-};
-  
-const errorStyles = {
-  marginLeft: '100px',
-  marginTop: '15px',
-  padding: '15px',
-  border: '1px solid red',
-  backgroundColor: '#fcd7d7',
-  width: '830px'
-}
+  const generateBtn= {
+    width: "150px",
+    height: "50px",
+    fontSize: "20px",
+    borderRadius: "15px",
+    marginLeft: "auto",
+    marginRight: "auto"
+  };
+    
+  const errorStyles = {
+    marginLeft: '100px',
+    marginTop: '15px',
+    padding: '15px',
+    border: '1px solid red',
+    backgroundColor: '#fcd7d7',
+    width: '830px'
+  }
 
 
-const [val, setVal] = useState('');
-const [error, setError] = useState('');
+  const [val, setVal] = useState('');
+  const [error, setError] = useState('');
 
   const onReset = () => {
     setVal('');
     props.handleReset();
   }
 
+  const updateText = (val: string) => {
+    const finalText = val.replace(/\s+/g,' ').trim();
+    props.onChange(finalText)
+  }
   const handleGenerate = (val: string) => {
     if (!val) {
       setError('Please enter a valid text to generate.');
@@ -66,7 +68,8 @@ const [error, setError] = useState('');
       return;
     }
     setError('');
-    props.onGenerate(val.replace(/\s+/g,' ').trim());
+    const finalText = val.replace(/\s+/g,' ').trim();
+    props.onGenerate(finalText);
   }
 
   return (
@@ -89,6 +92,14 @@ const [error, setError] = useState('');
         onClick={() => handleGenerate(val)}
       >
         Generate
+      </button>
+      <button
+        name="update"
+        style={{ ...generateBtn }}
+        className="d-flex justify-content-center mb-5"
+        onClick={() => updateText(val)}
+      >
+        Update Text
       </button>
       <br></br>
       {

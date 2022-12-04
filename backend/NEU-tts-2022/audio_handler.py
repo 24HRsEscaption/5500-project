@@ -1,6 +1,6 @@
 from flask import Flask, send_file, request, make_response
 import json
-import sys
+import os
 import synthesize  
 import text2phones
 
@@ -19,12 +19,14 @@ def AudioHandler():
     args['energy_control'] = request_dict.get('energy', 1.0)
     args['duration_control'] = request_dict.get('duration', 1.0)
     synthesize.synthesize_with_args(args)
+    file_name = 'output/result/LJSpeech/' + args['text'] + '.wav'
     response = make_response(
         send_file(
-            'output/result/LJSpeech/' + args['text'] + '.wav',
+            file_name,
             mimetype='audio/wav'
         )
     )
+    os.remove(file_name)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 

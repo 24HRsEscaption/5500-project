@@ -88,11 +88,14 @@ const consonantColors = [
 ];
 
 let vowelColorMap = {};
+// @ts-ignore
 vowels.forEach((key, i) => vowelColorMap[key] = vowelColors[i]);
 // console.log(vowelColorMap);
 
 let consonantColorMap = {};
+// @ts-ignore
 consonants.forEach((key, i) => consonantColorMap[key] = consonantColors[i]);
 // console.log(consonantColorMap);
+const completeMap = {...vowelColorMap, ...consonantColorMap};
 
-export default { vowelColorMap, consonantColorMap }
+export default completeMap;

@@ -13,7 +13,7 @@ import 'chartjs-plugin-dragdata'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart, registerables } from 'chart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import completeMap from './colorSchemePhones';
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
@@ -28,6 +28,31 @@ class App extends React.Component<any, any>{
       pitch: [1],
       energy: [1],
       src: '',
+      phones: [],
+      dataPitch: {
+        labels: [],
+        datasets: [
+          {
+            label: "Pitch",
+            backgroundColor: [],
+            data: []
+          }
+        ]
+      },
+      dataEnergy: {
+        labels: [],
+        datasets: [
+          {
+            label: "Energy",
+            backgroundColor: [],
+            data: []
+          }
+        ]
+      },
+      dataDuration: {
+        labels: ['Duration'],
+        datasets: []
+      }
     }
   }
   onReset() {
@@ -46,21 +71,51 @@ class App extends React.Component<any, any>{
         text: text,
       }),
     });
+    let phones = await response.json();
+    const dataPitch = this.state.dataPitch;
+    const dataEnergy = this.state.dataEnergy;
+    const dataDuration = this.state.dataDuration;
+
+    const defaultValues = phones.map((phone: any) => 5);
+    const bgColors = phones.map(
+      // @ts-ignore
+      (phone: any) => completeMap[phone.replace(/[0-9]/g, '')] || '#555'
+    );
+
+    dataPitch.labels = phones;
+    dataPitch.datasets[0].data = [...defaultValues];
+    dataPitch.datasets[0].backgroundColor = bgColors;
+
+    dataEnergy.labels = phones;
+    dataEnergy.datasets[0].data = [...defaultValues];
+    dataEnergy.datasets[0].backgroundColor = bgColors;
+
+    dataDuration.datasets = phones.map((phone: any, index: number) => ({
+      label: phone,
+      data: [1],
+      backgroundColor: bgColors[index],
+    }));
+
     this.setState({
-      phonemes: await response.json(),
+      phones: phones,
+      dataPitch: dataPitch,
+      dataEnergy: dataEnergy,
     });
   }
 
   async onGenerate(text: string) {
+    console.log(this.state.dataPitch.datasets[0].data);
     const response = await fetch(
       'http://localhost:5000/get_audio',
       {
         method: 'POST',
         body: JSON.stringify(
           {
-            energy: this.state.energy[0],
-            pitch: this.state.pitch[0],
-            duration: 2 - this.state.speed[0],
+            energy: `[${this.state.dataEnergy.datasets[0].data.toString()}]`,
+            pitch: `[${this.state.dataPitch.datasets[0].data.toString()}]`,
+            duration: `[${this.state.dataDuration.datasets.map(
+              (dataset: any) => dataset.data[0]
+            )}]`,
             text: text
           }
         )
@@ -71,61 +126,31 @@ class App extends React.Component<any, any>{
     });
   }
 
-  labels = ['Duration'];
-  data = {
-  labels: this.labels,
-  datasets: [
-    {
-      label: 't',
-      data: [20],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: '#3e95cd',
-    },
-    {
-      label: 'e',
-      data: [30],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: '#8e5ea2',
-    },
-    {
-      label: 's',
-      data: [15],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: '#3cba9f',
-    },
-    {
-      label: 't',
-      data: [35],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: '#e8c3b9',
-    },
-  ],
-};
+  updatePitch = (index: number, value: number) => {
+    const dataPitch = this.state.dataPitch;
+    dataPitch.datasets[0].data[index] = value;
+    this.setState({
+      dataPitch: dataPitch,
+    });
+  }
 
-  
-  labelsPitch = ['Pitch'];
-  dataPitch = {
-    labels: ["t", "e", "s", "t"],
-    datasets: [
-      {
-        label: "Pitch",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [3,5,7,4]
-      }
-    ]
-  };
+  updateEnergy = (index: number, value: number) => {
+    const dataEnergy = this.state.dataEnergy;
+    dataEnergy.datasets[0].data[index] = value;
+    console.log(dataEnergy.datasets[0].data);
+    console.log(this.state.dataPitch.datasets[0].data);
+    this.setState({
+      dataEnergy: dataEnergy,
+    });
+  }
 
-  labelsEnergy = ['Energy'];
-  dataEnergy = {
-    labels: ["t", "e", "s", "t"],
-    datasets: [
-      {
-        label: "Energy",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [6,4,8,5]
-      }
-    ]
-  };
+  updateDuration = (datasetIndex:number, index: number, value: number) => {
+    const dataDuration = this.state.dataDuration;
+    dataDuration.datasets[datasetIndex].data[index] = value;
+    this.setState({
+      dataDuration: dataDuration,
+    });
+  }
 
   render(){
     return (
@@ -139,6 +164,7 @@ class App extends React.Component<any, any>{
         <TextInput
           handleReset={this.onReset.bind(this)}
           onGenerate={this.onGenerate.bind(this)}
+          onChange={this.getPhones.bind(this)}
         />
         <Audio
           audioName="Audio"
@@ -161,14 +187,13 @@ class App extends React.Component<any, any>{
             </label>
           </div>
           <Bar
-            data={this.data}
+            data={this.state.dataDuration}
             options={{
               indexAxis: "y" as const,
               maintainAspectRatio: false,
               scales: {
                 x: {
                   stacked: true,
-                  max: 100,
                   min: 0,
                 },
                 y: {
@@ -195,13 +220,14 @@ class App extends React.Component<any, any>{
                     e.target.style.cursor = "grabbing";
                     if (value < 0) return false;
                   },
-                  onDragEnd: function (
+                  onDragEnd: (
                     e: any,
                     datasetIndex: any,
                     index: any,
                     value: any
-                  ) {
+                  ) => {
                     e.target.style.cursor = "default";
+                    this.updateDuration(datasetIndex, index, value);
                   },
                 },
                 datalabels: {
@@ -224,6 +250,7 @@ class App extends React.Component<any, any>{
             }}
           />
         </div>
+        {
         <div
           style={{
             height: "300px",
@@ -239,7 +266,8 @@ class App extends React.Component<any, any>{
             </label>
           </div>
           <Bar
-            data={this.dataPitch}
+            data={this.state.dataPitch}
+            redraw={true}
             options={{
               indexAxis: "x" as const,
               maintainAspectRatio: false,
@@ -256,8 +284,9 @@ class App extends React.Component<any, any>{
                     e.target.style.cursor = "grabbing";
                   },
                   // @ts-ignore
-                  onDragEnd: function (e, datasetIndex, index, value) {
+                  onDragEnd: (e, datasetIndex, index, value) => {
                     e.target.style.cursor = "default";
+                    this.updatePitch(index, value);
                   },
                 },
               },
@@ -270,6 +299,7 @@ class App extends React.Component<any, any>{
             }}
           />
         </div>
+  }
         <div
           style={{
             height: "300px",
@@ -285,7 +315,8 @@ class App extends React.Component<any, any>{
             </label>
           </div>
           <Bar
-            data={this.dataEnergy}
+            data={this.state.dataEnergy}
+            redraw={true}
             options={{
               indexAxis: "x" as const,
               maintainAspectRatio: false,
@@ -302,8 +333,9 @@ class App extends React.Component<any, any>{
                     e.target.style.cursor = "grabbing";
                   },
                   // @ts-ignore
-                  onDragEnd: function (e, datasetIndex, index, value) {
+                  onDragEnd: (e, datasetIndex, index, value) => {
                     e.target.style.cursor = "default";
+                    this.updateEnergy(index, value);
                   },
                 },
               },

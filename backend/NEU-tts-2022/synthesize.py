@@ -85,12 +85,12 @@ def preprocess_mandarin(text, preprocess_config):
     return np.array(sequence)
 
 
-def log_variance_predictions(p_predictions, e_predictions, d_rounded, result_path):
-    with open(os.path.join(result_path, "p_predictions.txt"), "w", encoding="utf-8") as f:
+def log_variance_predictions(raw_text, p_predictions, e_predictions, d_rounded, result_path):
+    with open(os.path.join(result_path, raw_text + "_p_predictions.txt"), "w", encoding="utf-8") as f:
         f.write(str(p_predictions.tolist()))
-    with open(os.path.join(result_path, "e_predictions.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(result_path, raw_text + "_e_predictions.txt"), "w", encoding="utf-8") as f:
         f.write(str(e_predictions.tolist()))
-    with open(os.path.join(result_path, "d_rounded.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(result_path, raw_text + "_d_rounded.txt"), "w", encoding="utf-8") as f:
         f.write(str(d_rounded.tolist()))
 
 
@@ -125,7 +125,8 @@ def synthesize(model, step, configs, vocoder, batchs, control_values):
             # print(p_predictions)
             # print(e_predictions)
             # print(d_rounded)
-            log_variance_predictions(p_predictions, 
+            log_variance_predictions(batch[0][0],
+                                    p_predictions, 
                                     e_predictions, 
                                     d_rounded, 
                                     train_config["path"]["result_path"])

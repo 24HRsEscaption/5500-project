@@ -76,7 +76,7 @@ class App extends React.Component<any, any>{
     const dataEnergy = this.state.dataEnergy;
     const dataDuration = this.state.dataDuration;
 
-    const defaultValues = phones.map((phone: any) => 5);
+    const defaultValues = phones.map((phone: any) => 1);
     const bgColors = phones.map(
       // @ts-ignore
       (phone: any) => completeMap[phone.replace(/[0-9]/g, '')] || '#555'
@@ -292,8 +292,8 @@ class App extends React.Component<any, any>{
               },
               scales: {
                 y: {
-                  max: 10,
-                  min: 1,
+                  max: 3,
+                  min: 0,
                 },
               },
             }}
@@ -341,8 +341,8 @@ class App extends React.Component<any, any>{
               },
               scales: {
                 y: {
-                  max: 10,
-                  min: 1,
+                  max: 3,
+                  min: 0,
                 },
               },
             }}

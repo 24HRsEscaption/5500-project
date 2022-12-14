@@ -83,15 +83,23 @@ The delivery of this project will be an interactive program that allows user to 
 
 ## Synthesis output
 
-The synthesis results in folder `output\result\LJSpeech` will look like the following
+The synthesis results in folder `backend\output\result\LJSpeech` will look like the following
 
-```
-|-d_rounded.txt                                                                                                         |-e_predictions.txt                                                                                                     |-Hello world.png                                                                                                       |-Hello world.wav                                                                                                       |-p_predictions.txt 
+```text
+Hello world.png
+Hello world.wav
+Hello world_d_rounded.txt
+Hello world_e_predictions.txt
+Hello world_p_predictions.txt 
 ```
 
 1. `Hello world.wav`: audio file of the speech
 2. `Hello world.png`: spectrogram of the audio
 3. `p_predictions.txt`, `e_predictions.txt`, `d_rounded.txt`: variance predictions, i.e. pitch, energy and duration. Each text file contains a 2D list with shape `[batch_size, sequence_length]`.
+
+## Known issue
+
+As you move any of the charts, the pitch and energy charts will be rerendered. This is a known [issue](https://github.com/reactchartjs/react-chartjs-2/issues/648) of [react-chart-js2](https://github.com/reactchartjs/react-chartjs-2). We weren't able to find a solution so far.
 
 ## UX Flowchart
 <p align="center">
